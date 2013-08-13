@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+	xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+	<ui:style>
+		.panel {
+			background-color: ivory;
+		}
+	</ui:style>
+
+	<g:HTMLPanel>
+		<center>
+			<g:FlowPanel styleName="{style.panel}">
+			    
+                <g:Label horizontalAlignment="center">Asignar Solicitud</g:Label>
+				<g:FlexTable width="500" borderWidth="1" cellPadding="0"
+					cellSpacing="0" styleName="tabla" ui:field="tabla">
+				</g:FlexTable>
+				<g:Button ui:field="buttonAsignarSolicitud" text="Asignar solicitud"></g:Button>
+				<g:Button ui:field="buttonCancelar" text="Cancelar"></g:Button>
+			</g:FlowPanel>
+		</center>
+	</g:HTMLPanel>
+</ui:UiBinder>

@@ -1,0 +1,20 @@
+<!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+	xmlns:g="urn:import:com.google.gwt.user.client.ui">
+	<ui:style>
+		.important {
+			font-weight: bold;
+		}
+	</ui:style>
+	<g:HTMLPanel>
+  <center>
+            <g:VerticalPanel spacing="5" ui:field="verticalPanel">
+                <g:Label horizontalAlignment="center">Listado de solicitudes</g:Label>
+                 <g:FlexTable width="500" borderWidth="1" cellPadding="0" cellSpacing="0"
+                    styleName="tabla" ui:field="tabla"></g:FlexTable>
+            </g:VerticalPanel>
+        </center>
+        
+
+	</g:HTMLPanel>
+</ui:UiBinder> 

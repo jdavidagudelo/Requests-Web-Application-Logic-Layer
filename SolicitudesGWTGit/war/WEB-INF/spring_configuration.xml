@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+	<bean id="Datasource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<!-- <property name="url" value="jdbc:mysql://grupo-ingenieriaysoftware.udea.edu.co:3306/clase" 
+			/> --> 
+		 
+ 		  <property name="url" value="jdbc:mysql://grupo-ingenieriaysoftware.udea.edu.co:3306/grupoIW1" />
+		<property name="username" value="grupoIW1" />
+		<property name="password" value="grupoIW110836" /> <!--          
+		<property name="url" value="jdbc:mysql://localhost:3306/mydb" />
+		<property name="username" value="root" />
+		<property name="password" value="....." />   -->
+	</bean>
+
+
+	<bean id="transactionManager" scope="singleton"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="dataSource" ref="Datasource" />
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="Datasource" />
+		<property name="mappingResources">
+			<list>
+				<value>co/edu/udea/iw/rtf/dao/mapping/Pregunta.hbm.xml</value>
+				<value>co/edu/udea/iw/rtf/dao/mapping/Producto.hbm.xml</value>
+				<value>co/edu/udea/iw/rtf/dao/mapping/Rol.hbm.xml</value>
+				<value>co/edu/udea/iw/rtf/dao/mapping/Sucursal.hbm.xml</value>
+				<value>co/edu/udea/iw/rtf/dao/mapping/TipoSolicitud.hbm.xml</value>
+				<value>co/edu/udea/iw/rtf/dao/mapping/Usuario.hbm.xml</value>
+				<value>co/edu/udea/iw/rtf/dao/mapping/Solicitud.hbm.xml</value>
+				<value>co/edu/udea/iw/rtf/dao/mapping/Respuesta.hbm.xml</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+			    <prop key="org.hibernate.transaction">true</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect
+				</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- Cada uno de los beans DAO esta asociado con un sessionFactory, ademas cada
+	uno de los servicios de la capa de logica del negocio esta asociado con un bean DAO
+	y con otros beans de la capa de logica del negocio para reducir el acoplamiento entre
+	capas de la aplicación. -->
+	<bean name="preguntaDAO" class="co.edu.udea.iw.rtf.dao.hibernate.PreguntaDAOHibernate">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="preguntaService" class="co.edu.udea.iw.rtf.service.PreguntaService">
+		<property name="preguntaDAO" ref="preguntaDAO" />
+	</bean>
+	<bean name="productoDAO" class="co.edu.udea.iw.rtf.dao.hibernate.ProductoDAOHibernate">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="productoService" class="co.edu.udea.iw.rtf.service.ProductoService">
+		<property name="productoDAO" ref="productoDAO" />
+	</bean>
+	<bean name="rolDAO" class="co.edu.udea.iw.rtf.dao.hibernate.RolDAOHibernate">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="rolService" class="co.edu.udea.iw.rtf.service.RolService">
+		<property name="rolDAO" ref="rolDAO" />
+	</bean>
+	<bean name="sucursalDAO" class="co.edu.udea.iw.rtf.dao.hibernate.SucursalDAOHibernate">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="sucursalService" class="co.edu.udea.iw.rtf.service.SucursalService">
+		<property name="sucursalDAO" ref="sucursalDAO" />
+	</bean>
+	<bean name="tipoSolicitudDAO"
+		class="co.edu.udea.iw.rtf.dao.hibernate.TipoSolicitudDAOHibernate">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="tipoSolicitudService" class="co.edu.udea.iw.rtf.service.TipoSolicitudService">
+		<property name="tipoSolicitudDAO" ref="tipoSolicitudDAO" />
+	</bean>
+	<bean name="usuarioDAO" class="co.edu.udea.iw.rtf.dao.hibernate.UsuarioDAOHibernate">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="usuarioService" class="co.edu.udea.iw.rtf.service.UsuarioService">
+		<property name="usuarioDAO" ref="usuarioDAO" />
+		<property name="rolService" ref="rolService" />
+	</bean>
+	<bean name="solicitudDAO"
+		class="co.edu.udea.iw.rtf.dao.hibernate.SolicitudDAOHibernate">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean name="solicitudService" class="co.edu.udea.iw.rtf.service.SolicitudService">
+		<property name="solicitudDAO" ref="solicitudDAO" />
+		<property name="sucursalService" ref="sucursalService" />
+		<property name="productoService" ref="productoService" />
+		<property name="tipoSolicitudService" ref="tipoSolicitudService" />
+		<property name="usuarioService" ref="usuarioService" />
+	</bean>
+	<bean name="respuestaDAO"
+		class="co.edu.udea.iw.rtf.dao.hibernate.RespuestaDAOHibernate">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<bean name="respuestaService" class="co.edu.udea.iw.rtf.service.RespuestaService">
+		<property name="respuestaDAO" ref="respuestaDAO" />
+		<property name="solicitudService" ref="solicitudService" />
+		<property name="preguntaService" ref="preguntaService" />
+	</bean>
+
+</beans>

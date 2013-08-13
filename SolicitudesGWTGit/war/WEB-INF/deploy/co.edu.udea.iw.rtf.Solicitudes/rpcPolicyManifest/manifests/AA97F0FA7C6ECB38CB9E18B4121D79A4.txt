@@ -1,0 +1,2 @@
+serviceClass: co.edu.udea.iw.rtf.client.SolicitudesService
+path: 4EBB3389CA27BE535DF6D47BFC56A4BB.gwt.rpc

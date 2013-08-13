@@ -1,0 +1,10 @@
+<module>
+	<inherits name="com.google.gwt.user.User"/>
+	<inherits name="com.google.gwt.user.theme.standard.Standard"/>
+	<inherits name="com.google.gwt.place.Place"/>
+	<inherits name="com.google.gwt.activity.Activity"/>
+	<entry-point class="co.edu.udea.iw.rtf.client.Solicitudes"/>
+	<replace-with class="co.edu.udea.iw.rtf.client.ClientFactoryImpl">
+		<when-type-is class="co.edu.udea.iw.rtf.client.ClientFactory"/>
+	</replace-with>
+</module>
