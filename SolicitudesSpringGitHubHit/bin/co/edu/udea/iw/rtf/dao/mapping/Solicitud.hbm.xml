@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 9, 2013 12:59:24 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="co.edu.udea.iw.rtf.dto.Solicitud" table="SOLICITUDES">
+		<id name="codigo" type="long">
+			<column name="CODIGO" />
+		</id>
+		<property name="apellidosSolicitante" type="java.lang.String">
+			<column name="APELLIDOSSOLICITANTE" length="45" not-null="true" />
+		</property>
+		<property name="nombresSolicitante" type="java.lang.String">
+			<column name="NOMBRESSOLICITANTE" length="45" not-null="true" />
+		</property>
+		<property name="correoElectronico" type="java.lang.String">
+			<column name="CORREOELECTRONICO" length="120" not-null="true" />
+		</property>
+		<property name="telefono" type="java.lang.String">
+			<column name="TELEFONO" length="20" not-null="true" />
+		</property>
+		<property name="celular" type="java.lang.String">
+			<column name="CELULAR" length="15" not-null="false" />
+		</property>
+		<property name="cualOtroProducto" type="java.lang.String">
+			<column name="CUALOTROPRODUCTO" not-null="false" />
+		</property>
+		<property name="fechaSolicitud" type="timestamp">
+			<column name="fechaSolicitud" length="19" not-null="true" />
+		</property>
+		<property name="textoSolicitud" type="java.lang.String">
+			<column name="TEXTOSOLICITUD" not-null="true" />
+		</property>
+		<property name="asignada" type="java.lang.Boolean">
+			<column name="ASIGNADA" not-null="false" />
+		</property>
+		<property name="fechaAsignacion" type="timestamp">
+			<column name="fechaAsignacion" length="19" />
+		</property>
+		<property name="respondida" type="java.lang.Boolean">
+			<column name="RESPONDIDA" not-null="false" />
+		</property>
+		<property name="fechaRespuesta" type="timestamp">
+			<column name="fechaRespuesta" length="19" />
+		</property>
+		<property name="textoRespuesta" type="java.lang.String">
+			<column name="TEXTORESPUESTA" not-null="false" />
+		</property>
+		<many-to-one name="sucursal" class="co.edu.udea.iw.rtf.dto.Sucursal"
+			fetch="join" lazy="false">
+			<column name="SUCURSAL" not-null="true"></column>
+		</many-to-one>
+		<many-to-one name="producto" class="co.edu.udea.iw.rtf.dto.Producto"
+			fetch="join" lazy="false">
+			<column name="PRODUCTO" not-null="false"></column>
+		</many-to-one>
+		<many-to-one name="tipoSolicitud" class="co.edu.udea.iw.rtf.dto.TipoSolicitud"
+			fetch="join" lazy="false">
+			<column name="TIPOSOLICITUD" not-null="true"></column>
+		</many-to-one>
+		<many-to-one name="usuarioAsignada" class="co.edu.udea.iw.rtf.dto.Usuario"
+			fetch="join" lazy="false">
+			<column name="USUARIOASIGNADA" not-null="false"></column>
+		</many-to-one>
+		<many-to-one name="usuarioResponde" class="co.edu.udea.iw.rtf.dto.Usuario"
+			fetch="join" lazy="false">
+			<column name="USUARIORESPONDE" not-null="false"></column>
+		</many-to-one>
+		<set name="respuestas" inverse="true" lazy="false">
+			<key>
+				<column name="Solicitud" not-null="true" />
+			</key>
+			<one-to-many class="co.edu.udea.iw.rtf.dto.Respuesta" />
+		</set>
+	</class>
+</hibernate-mapping>

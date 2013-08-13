@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 9, 2013 10:57:36 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="co.edu.udea.iw.rtf.dto.TipoSolicitud" table="TIPOSSOLICITUD">
+		<id name="codigo" type="long">
+			<column name="CODIGO" />
+		</id>
+		<property name="nombre" type="java.lang.String">
+			<column name="NOMBRE" length="35" not-null="true">
+			</column>
+		</property>
+		<property name="activo" type="java.lang.Boolean">
+			<column name="ACTIVO" not-null="true" />
+		</property>
+		<set name="solicitudes" inverse="true" lazy="false">
+			<key>
+				<column name="tipoSolicitud" not-null="true" />
+			</key>
+			<one-to-many class="co.edu.udea.iw.rtf.dto.Solicitud" />
+		</set>
+	</class>
+</hibernate-mapping>

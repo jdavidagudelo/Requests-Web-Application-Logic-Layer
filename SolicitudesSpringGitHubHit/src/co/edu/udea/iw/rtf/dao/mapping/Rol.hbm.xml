@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 9, 2013 10:38:44 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="co.edu.udea.iw.rtf.dto.Rol" table="ROLES">
+		<id name="codigo" type="long">
+			<column name="codigo" />
+			<generator class="assigned" />
+		</id>
+		<property name="nombre" type="string">
+			<column name="nombre" length="20" not-null="true" />
+		</property>
+		<set name="usuarios" inverse="true" lazy="false">
+			<key>
+				<column name="rol" not-null="true" />
+			</key>
+			<one-to-many class="co.edu.udea.iw.rtf.dto.Usuario" />
+		</set>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 9, 2013 1:39:31 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class name="co.edu.udea.iw.rtf.dto.Respuesta" table="RESPUESTAS">
+		<composite-id name="respuestaID" class="co.edu.udea.iw.rtf.dto.RespuestaID">
+			<key-many-to-one name="solicitud"
+				class="co.edu.udea.iw.rtf.dto.Solicitud" lazy="false">
+				<column name="SOLICITUD" />
+			</key-many-to-one>
+			<key-many-to-one name="pregunta"
+				class="co.edu.udea.iw.rtf.dto.Pregunta" lazy="false">
+				<column name="PREGUNTA" />
+			</key-many-to-one>
+		</composite-id>
+		<property name="respuesta" type="java.lang.Boolean">
+			<column name="RESPUESTA" />
+		</property>
+	</class>
+</hibernate-mapping>
